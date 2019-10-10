@@ -15,3 +15,4 @@ data-mapper/src/main/resources/log4j.xml
 event-sourcing/Journal.json
 .gradle/
 *.DS_Store
+/build

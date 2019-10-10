@@ -1,6 +1,8 @@
 package top.mdoufei.asm.util;
 
 /**
+ * Relevant to format transform utils
+ *
  * @author leon
  * @date 2019-10-10
  */
@@ -27,67 +29,65 @@ public class TransformUtils {
         }
 
         String[] paraArr = bc.split(";");
-        if (paraArr.length >= 1) {
-            StringBuffer sb = new StringBuffer();
-            for (String para : paraArr) {
-                para = para.replace("/", ".");
-                boolean meetArrFlag = false;
-                for (int i = 0; i < para.length(); i++) {
-                    char type = para.charAt(i);
-                    boolean breakLoop = false;
-                    switch (type) {
-                        case TypeConstants.TYPE_REFERENCE:
-                            sb.append(para.substring(i + 1));
-                            breakLoop = true;
-                            break;
-                        case TypeConstants.TYPE_ARR:
-                            meetArrFlag = true;
-                            continue;
-                        case TypeConstants.TYPE_BOOL:
-                            sb.append(TypeConstants.BOOL);
-                            break;
-                        case TypeConstants.TYPE_BYTE:
-                            sb.append(TypeConstants.BYTE);
-                            break;
-                        case TypeConstants.TYPE_CHAR:
-                            sb.append(TypeConstants.CHAR);
-                            break;
-                        case TypeConstants.TYPE_DOUBLE:
-                            sb.append(TypeConstants.DOUBLE);
-                            break;
-                        case TypeConstants.TYPE_FLOAT:
-                            sb.append(TypeConstants.FLOAT);
-                            break;
-                        case TypeConstants.TYPE_INT:
-                            sb.append(TypeConstants.INT);
-                            break;
-                        case TypeConstants.TYPE_LONG:
-                            sb.append(TypeConstants.LONG);
-                            break;
-                        case TypeConstants.TYPE_SHORT:
-                            sb.append(TypeConstants.SHORT);
-                            break;
-                        default:
-                            System.out.println("Error type with " + type);
-                            break;
-                    }
-
-                    if (meetArrFlag) {
-                        sb.append("[]");
-                        meetArrFlag = false;
-                    }
-
-                    sb.append(",");
-
-                    if (breakLoop) {
+        StringBuilder output = new StringBuilder();
+        for (String para : paraArr) {
+            para = para.trim();
+            para = para.replace("/", ".");
+            boolean meetArr = false;
+            for (int i = 0; i < para.length(); i++) {
+                boolean breakLoop = false;
+                char type = para.charAt(i);
+                switch (type) {
+                    case TypeConstants.TYPE_REFERENCE:
+                        output.append(para.substring(i + 1));
+                        breakLoop = true;
                         break;
-                    }
+                    case TypeConstants.TYPE_ARR:
+                        meetArr = true;
+                        continue;
+                    case TypeConstants.TYPE_BOOL:
+                        output.append(TypeConstants.BOOL);
+                        break;
+                    case TypeConstants.TYPE_BYTE:
+                        output.append(TypeConstants.BYTE);
+                        break;
+                    case TypeConstants.TYPE_CHAR:
+                        output.append(TypeConstants.CHAR);
+                        break;
+                    case TypeConstants.TYPE_DOUBLE:
+                        output.append(TypeConstants.DOUBLE);
+                        break;
+                    case TypeConstants.TYPE_FLOAT:
+                        output.append(TypeConstants.FLOAT);
+                        break;
+                    case TypeConstants.TYPE_INT:
+                        output.append(TypeConstants.INT);
+                        break;
+                    case TypeConstants.TYPE_LONG:
+                        output.append(TypeConstants.LONG);
+                        break;
+                    case TypeConstants.TYPE_SHORT:
+                        output.append(TypeConstants.SHORT);
+                        break;
+                    default:
+                        System.out.println("Error type with " + type);
+                        break;
+                }
+
+                if (meetArr) {
+                    output.append("[]");
+                    meetArr = false;
+                }
+
+                output.append(",");
+
+                if (breakLoop) {
+                    break;
                 }
             }
-
-            String paramStr = sb.toString();
-            return paramStr.substring(0, paramStr.length() - 1);
         }
-        return null;
+
+        String str = output.toString();
+        return str.substring(0, str.length() - 1);
     }
 }
