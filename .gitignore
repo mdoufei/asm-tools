@@ -1,0 +1,17 @@
+target
+.metadata
+.settings
+.classpath
+.project
+*.class
+*.jar
+*.war
+*.ear
+.idea
+*.iml
+*.swp
+datanucleus.log
+*.log
+data-mapper/src/main/resources/log4j.xml
+event-sourcing/Journal.json
+.gradle/
