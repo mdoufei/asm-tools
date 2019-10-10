@@ -4,7 +4,6 @@ target
 .classpath
 .project
 *.class
-*.jar
 *.war
 *.ear
 .idea
@@ -15,3 +14,4 @@ datanucleus.log
 data-mapper/src/main/resources/log4j.xml
 event-sourcing/Journal.json
 .gradle/
+*.DS_Store
