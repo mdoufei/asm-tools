@@ -1,8 +1,6 @@
 
 # ASM Utils
 
-Library for handle Java bytecode.
-
 ## Type Transform
  - Method params type transform 
       * Ljava/lang/String;[Landroid/graphics/PointF;   ->   java.lang.String,android.graphics.PointF[]
