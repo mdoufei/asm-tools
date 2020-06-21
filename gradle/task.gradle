@@ -32,7 +32,7 @@ task taskB {
 
 task taskC(type: taskCType) {
     //give value to the task via input/output specified in 'taskCType'
-    var = exampleVar
+    var = VERSION
     someFile = new File(project.getBuildDir().absolutePath + "/taskC.result")
 }
 

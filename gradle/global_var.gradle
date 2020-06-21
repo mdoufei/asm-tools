@@ -6,3 +6,19 @@ MY_LIST.add("elementA")
 
 ext.MY_VAR = "testVar"
 
+ext.VERSION = new TestVersion("asm-tool", "1.0.0")
+
+class TestVersion {
+    String archName
+    String version
+
+    TestVersion(String archName, String version) {
+        this.archName = archName
+        this.version = version
+    }
+
+    @Override
+    String toString() {
+        archName + ":" + version
+    }
+}
