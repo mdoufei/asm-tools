@@ -1,0 +1,8 @@
+ext.MY_MAP = [:]
+MY_MAP.key1 = "value1"
+
+ext.MY_LIST = []
+MY_LIST.add("elementA")
+
+ext.MY_VAR = "testVar"
+

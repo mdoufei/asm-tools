@@ -1,0 +1,43 @@
+/**
+ * sequence test:
+ * 1. ./gradlew taskA             // execute sequence : taskB taskA taskC
+ * 2. ./gradlew taskB taskA       // execute sequence : taskB taskA taskC
+ * 3. ./gradlew taskA taskB taskA // execute sequence : taskB taskA taskC
+ * 4. ./gradlew taskC taskA       // execute sequence : taskB taskA taskC
+ */
+task taskA {
+    dependsOn(["taskB"])
+
+    finalizedBy(['taskC'])
+
+    doLast {
+        println name + " doLast."
+        println MY_VAR
+        println MY_MAP.get("key1")
+    }
+
+    println name + " evaluate phase."
+}
+
+task taskB {
+    doFirst {
+        println name + " doFirst."
+        println exampleVar // from gradle.properties
+    }
+}
+
+task taskC(type: taskCType) {
+}
+
+task taskD {
+    doLast {
+        println name + "do last."
+    }
+}
+
+class taskCType extends DefaultTask {
+    @TaskAction
+    void doJob() {
+        println name + " do action."
+    }
+}

@@ -1,6 +1,7 @@
-plugins {
-    id 'java'
-}
+apply plugin: "java"
+apply from: "gradle/global_var.gradle"
+apply from: "gradle/task.gradle"
+
 
 group 'top.mdoufei.library'
 version '1.0-SNAPSHOT'
@@ -14,3 +15,4 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
