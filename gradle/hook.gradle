@@ -1,0 +1,12 @@
+project.getGradle().getTaskGraph().whenReady {
+    TaskExecutionGraph taskExecutionGraph ->
+        taskExecutionGraph.allTasks.each { Task task ->
+            //this will be called after configuration
+            println task.name
+        }
+}
+
+project.afterEvaluate {
+    println "afterEvaluate."
+}
+

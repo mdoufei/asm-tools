@@ -1,0 +1,35 @@
+project.afterEvaluate {
+    project.configurations.all { Configuration configuration ->
+        //only see "youOwnConfiguration" configuration
+        if (!configuration.name.contains("youOwnConfiguration")) {
+            return
+        }
+
+        try {
+            configuration.resolvedConfiguration.resolvedArtifacts.each {
+
+            }
+        } catch (Exception e) {
+            //ignore
+        }
+    }
+}
+
+configurations {
+    youOwnConfiguration {
+        description = "you own configuration"
+    }
+}
+
+dependencies {
+    youOwnConfiguration "org.apache.commons:commons-compress:1.20"
+    youOwnConfiguration "com.squareup.okhttp3:okhttp:4.7.2"
+}
+
+task printDep {
+    doLast {
+        configurations.getByName('youOwnConfiguration').resolvedConfiguration.resolvedArtifacts.each {
+            println it.name + " @" + it.file.absolutePath
+        }
+    }
+}
