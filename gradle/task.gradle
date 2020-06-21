@@ -20,6 +20,10 @@ task taskA {
 }
 
 task taskB {
+    //you can give value to input/output via
+    inputs
+    outputs
+
     doFirst {
         println name + " doFirst."
         println exampleVar // from gradle.properties
@@ -27,17 +31,23 @@ task taskB {
 }
 
 task taskC(type: taskCType) {
-}
-
-task taskD {
-    doLast {
-        println name + "do last."
-    }
+    //give value to the task via input/output specified in 'taskCType'
+    var = exampleVar
+    someFile = new File(project.getBuildDir().absolutePath + "/taskC.result")
 }
 
 class taskCType extends DefaultTask {
+
+    @Input
+    String var
+
+    @OutputFile
+    File someFile
+
     @TaskAction
     void doJob() {
-        println name + " do action."
+        //using input then change output at your action depends on your own logic
+        someFile.write(var)
+        println name + " " + var + " " + someFile.absolutePath
     }
 }
