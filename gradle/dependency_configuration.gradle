@@ -1,20 +1,3 @@
-project.afterEvaluate {
-    project.configurations.all { Configuration configuration ->
-        //only see "youOwnConfiguration" configuration
-        if (!configuration.name.contains("youOwnConfiguration")) {
-            return
-        }
-
-        try {
-            configuration.resolvedConfiguration.resolvedArtifacts.each {
-
-            }
-        } catch (Exception e) {
-            //ignore
-        }
-    }
-}
-
 configurations {
     youOwnConfiguration {
         description = "you own configuration"

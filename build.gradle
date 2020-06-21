@@ -2,7 +2,7 @@ apply plugin: "java"
 apply from: "gradle/global_var.gradle"
 apply from: "gradle/task.gradle"
 apply from: "gradle/hook.gradle"
-apply from: "gradle/configuration_dependency.gradle"
+apply from: "gradle/dependency_configuration.gradle"
 
 group 'top.mdoufei.library'
 version '1.0-SNAPSHOT'
